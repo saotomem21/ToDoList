@@ -9,22 +9,22 @@
 
 <body>
     <div id="app">
-        <h1>ToDoリスト</h1>
-        <input v-model="newTodo" @keyup.enter="addTodo" placeholder="新しいタスクを追加">
-        <button @click="addTodo">追加</button>
+        <h1>Todos</h1>
+        <input v-model="newTodo" @keyup.enter="addTodo" placeholder="What needs to be done?">
         <ul>
             <li v-for="(todo, index) in filteredTodos" :key="index" class="todo-item">
                 <input type="checkbox" v-model="todo.done">
                 <span :class="{ done: todo.done }">{{ todo.text }}</span>
-                <button @click="removeTodo(index)">削除</button>
+                <button @click="removeTodo(index)">×</button>
             </li>
         </ul>
         <div class="filters">
-            <button @click="filter = 'all'">All</button>
-            <button @click="filter = 'active'">Non checked (Active)</button>
-            <button @click="filter = 'completed'">Checked (Completed)</button>
+            <span>{{ remaining }} items left</span>
+            <button @click="filter = 'all'" :class="{ active: filter === 'all' }">All</button>
+            <button @click="filter = 'active'" :class="{ active: filter === 'active' }">Active</button>
+            <button @click="filter = 'completed'" :class="{ active: filter === 'completed' }">Completed</button>
+            <button @click="clearCompleted">Clear completed</button>
         </div>
-        <button @click="clearCompleted">Clear completed</button>
     </div>
 
     <script src="app.js"></script>

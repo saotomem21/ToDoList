@@ -1,36 +1,98 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 #app {
-    max-width: 600px;
-    margin: 0 auto;
+    background: white;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+h1 {
+    font-size: 48px;
+    color: #b83b3b;
+    text-align: center;
+    margin: 0;
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 24px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    height: 200px;
+    /* 固定の高さ */
+    overflow-y: auto;
+    /* 垂直スクロールを有効にする */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .todo-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.todo-item input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-button {
-    margin-left: 10px;
-}
-
-.done {
+.todo-item .done {
     text-decoration: line-through;
+    color: #999;
 }
 
 .filters {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.filters span {
+    font-size: 14px;
 }
 
 .filters button {
-    margin-right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filters button.active {
+    border: 1px solid #b83b3b;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+.filters button:hover {
+    text-decoration: underline;
+}
+
+.filters button:last-child {
+    color: #b83b3b;
 }

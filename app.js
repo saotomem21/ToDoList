@@ -5,6 +5,21 @@ new Vue({
     todos: [],
     filter: 'all'
   },
+  computed: {
+    filteredTodos() {
+      if (this.filter === 'all') {
+        return this.todos;
+      } else if (this.filter === 'active') {
+        return this.todos.filter(todo => !todo.done);
+      } else if (this.filter === 'completed') {
+        return this.todos.filter(todo => todo.done);
+      }
+      return this.todos;
+    },
+    remaining() {
+      return this.todos.filter(todo => !todo.done).length;
+    }
+  },
   methods: {
     addTodo() {
       if (this.newTodo.trim() !== '') {
@@ -17,18 +32,6 @@ new Vue({
     },
     clearCompleted() {
       this.todos = this.todos.filter(todo => !todo.done);
-    }
-  },
-  computed: {
-    filteredTodos() {
-      if (this.filter === 'all') {
-        return this.todos;
-      } else if (this.filter === 'active') {
-        return this.todos.filter(todo => !todo.done);
-      } else if (this.filter === 'completed') {
-        return this.todos.filter(todo => todo.done);
-      }
-      return this.todos;
     }
   }
 });

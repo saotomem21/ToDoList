@@ -15,7 +15,10 @@
             <li v-for="(todo, index) in filteredTodos" :key="index" class="todo-item">
                 <input type="checkbox" v-model="todo.done">
                 <span :class="{ done: todo.done }">{{ todo.text }}</span>
-                <button @click="removeTodo(index)">×</button>
+                <div class="buttons">
+                    <button @click="editTodo(index)">Edit</button>
+                    <button @click="removeTodo(index)">×</button>
+                </div>
             </li>
         </ul>
         <div class="filters">
@@ -24,6 +27,15 @@
             <button @click="filter = 'active'" :class="{ active: filter === 'active' }">Active</button>
             <button @click="filter = 'completed'" :class="{ active: filter === 'completed' }">Completed</button>
             <button @click="clearCompleted">Clear completed</button>
+        </div>
+
+        <!-- Edit Modal -->
+        <div v-if="isEditing" class="modal">
+            <div class="modal-content">
+                <span @click="closeEditModal" class="close">&times;</span>
+                <input v-model="editText" @keyup.enter="updateTodo">
+                <button @click="updateTodo">Update</button>
+            </div>
         </div>
     </div>
 

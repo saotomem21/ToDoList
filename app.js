@@ -3,7 +3,10 @@ new Vue({
   data: {
     newTodo: '',
     todos: [],
-    filter: 'all'
+    filter: 'all',
+    isEditing: false,
+    currentTodoIndex: null,
+    editText: ''
   },
   computed: {
     filteredTodos() {
@@ -32,6 +35,22 @@ new Vue({
     },
     clearCompleted() {
       this.todos = this.todos.filter(todo => !todo.done);
+    },
+    editTodo(index) {
+      this.isEditing = true;
+      this.currentTodoIndex = index;
+      this.editText = this.todos[index].text;
+    },
+    updateTodo() {
+      if (this.editText.trim() !== '') {
+        this.todos[this.currentTodoIndex].text = this.editText.trim();
+        this.closeEditModal();
+      }
+    },
+    closeEditModal() {
+      this.isEditing = false;
+      this.currentTodoIndex = null;
+      this.editText = '';
     }
   }
 });
